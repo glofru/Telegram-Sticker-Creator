@@ -16,6 +16,8 @@
 		37495744271A54C6002C3E72 /* StickerCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37495743271A54C6002C3E72 /* StickerCreatorTests.swift */; };
 		3749574E271A54C7002C3E72 /* StickerCreatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749574D271A54C7002C3E72 /* StickerCreatorUITests.swift */; };
 		37495750271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749574F271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift */; };
+		3749575D271A5BB5002C3E72 /* ImageCroppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749575C271A5BB5002C3E72 /* ImageCroppingView.swift */; };
+		3749575F271A5D36002C3E72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749575E271A5D36002C3E72 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		37495749271A54C7002C3E72 /* StickerCreatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StickerCreatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3749574D271A54C7002C3E72 /* StickerCreatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorUITests.swift; sourceTree = "<group>"; };
 		3749574F271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3749575C271A5BB5002C3E72 /* ImageCroppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingView.swift; sourceTree = "<group>"; };
+		3749575E271A5D36002C3E72 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				37495736271A54C6002C3E72 /* Persistence.swift */,
 				37495738271A54C6002C3E72 /* StickerCreator.xcdatamodeld */,
 				37495733271A54C6002C3E72 /* Preview Content */,
+				3749575C271A5BB5002C3E72 /* ImageCroppingView.swift */,
+				3749575E271A5D36002C3E72 /* Extensions.swift */,
 			);
 			path = StickerCreator;
 			sourceTree = "<group>";
@@ -264,8 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3749573A271A54C6002C3E72 /* StickerCreator.xcdatamodeld in Sources */,
+				3749575F271A5D36002C3E72 /* Extensions.swift in Sources */,
 				37495737271A54C6002C3E72 /* Persistence.swift in Sources */,
 				37495730271A54C4002C3E72 /* ContentView.swift in Sources */,
+				3749575D271A5BB5002C3E72 /* ImageCroppingView.swift in Sources */,
 				3749572E271A54C4002C3E72 /* StickerCreatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,7 +443,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +473,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,7 +496,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,7 +521,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
