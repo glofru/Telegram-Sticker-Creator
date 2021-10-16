@@ -9,24 +9,22 @@ import SwiftUI
 
 struct ImageCroppingView: View {
     
-    let uiImage: UIImage
-    
     @StateObject private var viewModel = ImageCroppingViewModel()
     
     @State private var windowCenter: CGPoint?
     
-    @State private var offset = CGSize.zero
+    let uiImage: UIImage!
+    
     @State private var lastOffset: CGSize?
-    @State private var scale = 1.0
     @State private var lastScale = 1.0
     
     var body: some View {
         NavigationView {
             ZStack {
-                Image(uiImage: uiImage)
+                Image(uiImage: viewModel.uiImage)
                     .onAppear {
-                        viewModel.window.center.x = uiImage.size.width/2
-                        viewModel.window.center.y = uiImage.size.height/2
+                        viewModel.window.center = CGPoint(x: viewModel.uiImage.size.width/2, y: viewModel.uiImage.size.height/2)
+                        viewModel.window.size = CGSize(width: viewModel.uiImage.size.width/4, height: viewModel.uiImage.size.width/4)
                     }
                     .overlay {
                         GridView(viewModel: viewModel)
@@ -41,47 +39,44 @@ struct ImageCroppingView: View {
                                 
                                 if viewModel.window.center.x - viewModel.window.size.width/2 < 0 {
                                     viewModel.window.center.x = viewModel.window.size.width/2
-                                } else if viewModel.window.center.x + viewModel.window.size.width/2 > uiImage.size.width {
-                                    viewModel.window.center.x = uiImage.size.width - viewModel.window.size.width/2
+                                } else if viewModel.window.center.x + viewModel.window.size.width/2 > viewModel.uiImage.size.width {
+                                    viewModel.window.center.x = viewModel.uiImage.size.width - viewModel.window.size.width/2
                                 }
                                 
                                 if viewModel.window.center.y - viewModel.window.size.height/2 < 0 {
                                     viewModel.window.center.y = viewModel.window.size.height/2
-                                } else if viewModel.window.center.y + viewModel.window.size.height/2 > uiImage.size.height {
-                                    viewModel.window.center.y = uiImage.size.height - viewModel.window.size.height/2
+                                } else if viewModel.window.center.y + viewModel.window.size.height/2 > viewModel.uiImage.size.height {
+                                    viewModel.window.center.y = viewModel.uiImage.size.height - viewModel.window.size.height/2
                                 }
                             }).onEnded({ _ in
                                 windowCenter = nil
                             }))
                     }
             }
-            .offset(offset)
-            .scaleEffect(scale)
+            .offset(viewModel.offset)
+            .scaleEffect(viewModel.scale)
             .gesture(MagnificationGesture()
                         .onChanged({ value in
                 let delta = value / lastScale
                 lastScale = value
                 if delta > 0.94 {
-                    scale *= delta
-                    scale = max(min(scale, 3), 0.8)
+                    viewModel.scale *= delta
+                    viewModel.scale = max(min(viewModel.scale, 3), 0.8)
                 }
             }).onEnded({ _ in
                 lastScale = 1.0
             }).simultaneously(with: DragGesture()
                                 .onChanged({ value in
                 if lastOffset == nil {
-                    lastOffset = offset
+                    lastOffset = viewModel.offset
                 }
-                offset = CGSize(width: lastOffset!.width + value.translation.width / scale, height: lastOffset!.height + value.translation.height / scale)
+                viewModel.offset = CGSize(width: lastOffset!.width + value.translation.width / viewModel.scale, height: lastOffset!.height + value.translation.height / viewModel.scale)
             }).onEnded({ _ in
                 lastOffset = nil
             })))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Reset") {
-                        scale = 1.0
-                        offset = CGSize.zero
-                    }
+                    Button("Reset", action: viewModel.reset)
                 }
             }
         }
@@ -91,6 +86,9 @@ struct ImageCroppingView: View {
 private struct GridView: View {
     
     @ObservedObject var viewModel: ImageCroppingViewModel
+    
+    @State private var lastCenter: CGPoint?
+    @State private var lastSize: CGSize?
     
     var body: some View {
         ZStack {
@@ -105,7 +103,7 @@ private struct GridView: View {
             
             Line()
                 .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
-                .frame(width: viewModel.window.size.width, height: 2)
+                .frame(width: viewModel.window.size.height, height: 2)
                 .rotationEffect(.degrees(90))
         }
             .overlay {
@@ -127,13 +125,27 @@ private struct GridView: View {
             .background(Circle().foregroundColor(Color.blue))
             .frame(width: 10, height: 10)
             .offset(CGSize(width: position.rawValue.width * viewModel.window.size.width/2, height: position.rawValue.height * viewModel.window.size.height/2))
+            .highPriorityGesture(DragGesture().onChanged({ value in
+                if lastCenter == nil || lastSize == nil {
+                    lastCenter = viewModel.window.center
+                    lastSize = viewModel.window.size
+                }
+                
+//                viewModel.window.size = CGSize(width: abs(lastSize!.width + value.translation.width * position.rawValue.width * 2), height: abs(lastSize!.height + value.translation.height * position.rawValue.height * 2))
+                
+                viewModel.window.size = CGSize(width: abs(lastSize!.width + value.translation.width * position.rawValue.width), height: abs(lastSize!.height + value.translation.height * position.rawValue.height))
+            }).onEnded({ _ in
+                lastCenter = nil
+                lastSize = nil
+            }))
     }
     
     enum PivotPosition: CGSize {
         case topLeft = "{-1, -1}"
-        case topRight = "{1, 1}"
-        case bottomRight = "{1, -1}"
+        case topRight = "{1, -1}"
+        case bottomRight = "{1, 1}"
         case bottomLeft = "{-1, 1}"
+        
         case midTop = "{0, -1}"
         case midBottom = "{0, 1}"
         case midRight = "{1, 0}"
@@ -143,11 +155,21 @@ private struct GridView: View {
 
 private class ImageCroppingViewModel: ObservableObject {
     struct Window {
-        var center: CGPoint;
-        var size: CGSize;
+        var center = CGPoint.zero;
+        var size = CGSize.zero;
     }
     
-    @Published var window = Window(center: CGPoint.zero, size: CGSize(width: 100, height: 100))
+    let uiImage = UIImage(named: "testcat")!
+    
+    @Published var scale = 1.0
+    @Published var offset = CGSize.zero
+    
+    @Published var window = Window()
+    
+    func reset() {
+        self.scale = 1.0
+        self.offset = CGSize.zero
+    }
 }
 
 struct Line: Shape {
