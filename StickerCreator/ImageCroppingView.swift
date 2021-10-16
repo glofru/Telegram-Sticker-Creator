@@ -92,14 +92,52 @@ private struct GridView: View {
     
     @ObservedObject var viewModel: ImageCroppingViewModel
     
-    @State private var size = CGSize(width: 100, height: 100)
-    
     var body: some View {
-        Rectangle()
-            .frame(width: viewModel.window.size.width, height: viewModel.window.size.height)
-            .opacity(0.3)
-            .border(Color.white.opacity(0.8), width: 2)
+        ZStack {
+            Rectangle()
+                .frame(width: viewModel.window.size.width, height: viewModel.window.size.height)
+                .opacity(0.3)
+                .border(Color.white.opacity(0.8), width: 2)
             
+            Line()
+                .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                .frame(width: viewModel.window.size.width, height: 2)
+            
+            Line()
+                .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                .frame(width: viewModel.window.size.width, height: 2)
+                .rotationEffect(.degrees(90))
+        }
+            .overlay {
+                getPivot(.topLeft)
+                getPivot(.topRight)
+                getPivot(.bottomLeft)
+                getPivot(.bottomRight)
+                
+                getPivot(.midTop)
+                getPivot(.midBottom)
+                getPivot(.midRight)
+                getPivot(.midLeft)
+            }
+    }
+    
+    private func getPivot(_ position: PivotPosition) -> some View {
+        Circle()
+            .strokeBorder(Color.white, lineWidth: 1)
+            .background(Circle().foregroundColor(Color.blue))
+            .frame(width: 10, height: 10)
+            .offset(CGSize(width: position.rawValue.width * viewModel.window.size.width/2, height: position.rawValue.height * viewModel.window.size.height/2))
+    }
+    
+    enum PivotPosition: CGSize {
+        case topLeft = "{-1, -1}"
+        case topRight = "{1, 1}"
+        case bottomRight = "{1, -1}"
+        case bottomLeft = "{-1, 1}"
+        case midTop = "{0, -1}"
+        case midBottom = "{0, 1}"
+        case midRight = "{1, 0}"
+        case midLeft = "{-1, 0}"
     }
 }
 
@@ -110,6 +148,15 @@ private class ImageCroppingViewModel: ObservableObject {
     }
     
     @Published var window = Window(center: CGPoint.zero, size: CGSize(width: 100, height: 100))
+}
+
+struct Line: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: rect.width, y: 0))
+        return path
+    }
 }
 
 #if DEBUG
