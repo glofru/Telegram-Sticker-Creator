@@ -1,0 +1,633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3749572E271A54C4002C3E72 /* StickerCreatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */; };
+		37495730271A54C4002C3E72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749572F271A54C4002C3E72 /* ContentView.swift */; };
+		37495732271A54C6002C3E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37495731271A54C6002C3E72 /* Assets.xcassets */; };
+		37495735271A54C6002C3E72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37495734271A54C6002C3E72 /* Preview Assets.xcassets */; };
+		37495737271A54C6002C3E72 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37495736271A54C6002C3E72 /* Persistence.swift */; };
+		3749573A271A54C6002C3E72 /* StickerCreator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37495738271A54C6002C3E72 /* StickerCreator.xcdatamodeld */; };
+		37495744271A54C6002C3E72 /* StickerCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37495743271A54C6002C3E72 /* StickerCreatorTests.swift */; };
+		3749574E271A54C7002C3E72 /* StickerCreatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749574D271A54C7002C3E72 /* StickerCreatorUITests.swift */; };
+		37495750271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749574F271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37495740271A54C6002C3E72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37495722271A54C4002C3E72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37495729271A54C4002C3E72;
+			remoteInfo = StickerCreator;
+		};
+		3749574A271A54C7002C3E72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37495722271A54C4002C3E72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37495729271A54C4002C3E72;
+			remoteInfo = StickerCreator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3749572A271A54C4002C3E72 /* StickerCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorApp.swift; sourceTree = "<group>"; };
+		3749572F271A54C4002C3E72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		37495731271A54C6002C3E72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		37495734271A54C6002C3E72 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		37495736271A54C6002C3E72 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		37495739271A54C6002C3E72 /* StickerCreator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StickerCreator.xcdatamodel; sourceTree = "<group>"; };
+		3749573F271A54C6002C3E72 /* StickerCreatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StickerCreatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		37495743271A54C6002C3E72 /* StickerCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorTests.swift; sourceTree = "<group>"; };
+		37495749271A54C7002C3E72 /* StickerCreatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StickerCreatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3749574D271A54C7002C3E72 /* StickerCreatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorUITests.swift; sourceTree = "<group>"; };
+		3749574F271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37495727271A54C4002C3E72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3749573C271A54C6002C3E72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37495746271A54C7002C3E72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37495721271A54C4002C3E72 = {
+			isa = PBXGroup;
+			children = (
+				3749572C271A54C4002C3E72 /* StickerCreator */,
+				37495742271A54C6002C3E72 /* StickerCreatorTests */,
+				3749574C271A54C7002C3E72 /* StickerCreatorUITests */,
+				3749572B271A54C4002C3E72 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3749572B271A54C4002C3E72 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3749572A271A54C4002C3E72 /* StickerCreator.app */,
+				3749573F271A54C6002C3E72 /* StickerCreatorTests.xctest */,
+				37495749271A54C7002C3E72 /* StickerCreatorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3749572C271A54C4002C3E72 /* StickerCreator */ = {
+			isa = PBXGroup;
+			children = (
+				3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */,
+				3749572F271A54C4002C3E72 /* ContentView.swift */,
+				37495731271A54C6002C3E72 /* Assets.xcassets */,
+				37495736271A54C6002C3E72 /* Persistence.swift */,
+				37495738271A54C6002C3E72 /* StickerCreator.xcdatamodeld */,
+				37495733271A54C6002C3E72 /* Preview Content */,
+			);
+			path = StickerCreator;
+			sourceTree = "<group>";
+		};
+		37495733271A54C6002C3E72 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				37495734271A54C6002C3E72 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		37495742271A54C6002C3E72 /* StickerCreatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				37495743271A54C6002C3E72 /* StickerCreatorTests.swift */,
+			);
+			path = StickerCreatorTests;
+			sourceTree = "<group>";
+		};
+		3749574C271A54C7002C3E72 /* StickerCreatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3749574D271A54C7002C3E72 /* StickerCreatorUITests.swift */,
+				3749574F271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift */,
+			);
+			path = StickerCreatorUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		37495729271A54C4002C3E72 /* StickerCreator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37495753271A54C7002C3E72 /* Build configuration list for PBXNativeTarget "StickerCreator" */;
+			buildPhases = (
+				37495726271A54C4002C3E72 /* Sources */,
+				37495727271A54C4002C3E72 /* Frameworks */,
+				37495728271A54C4002C3E72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StickerCreator;
+			productName = StickerCreator;
+			productReference = 3749572A271A54C4002C3E72 /* StickerCreator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3749573E271A54C6002C3E72 /* StickerCreatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37495756271A54C7002C3E72 /* Build configuration list for PBXNativeTarget "StickerCreatorTests" */;
+			buildPhases = (
+				3749573B271A54C6002C3E72 /* Sources */,
+				3749573C271A54C6002C3E72 /* Frameworks */,
+				3749573D271A54C6002C3E72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37495741271A54C6002C3E72 /* PBXTargetDependency */,
+			);
+			name = StickerCreatorTests;
+			productName = StickerCreatorTests;
+			productReference = 3749573F271A54C6002C3E72 /* StickerCreatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		37495748271A54C7002C3E72 /* StickerCreatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37495759271A54C7002C3E72 /* Build configuration list for PBXNativeTarget "StickerCreatorUITests" */;
+			buildPhases = (
+				37495745271A54C7002C3E72 /* Sources */,
+				37495746271A54C7002C3E72 /* Frameworks */,
+				37495747271A54C7002C3E72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3749574B271A54C7002C3E72 /* PBXTargetDependency */,
+			);
+			name = StickerCreatorUITests;
+			productName = StickerCreatorUITests;
+			productReference = 37495749271A54C7002C3E72 /* StickerCreatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		37495722271A54C4002C3E72 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					37495729271A54C4002C3E72 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					3749573E271A54C6002C3E72 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 37495729271A54C4002C3E72;
+					};
+					37495748271A54C7002C3E72 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 37495729271A54C4002C3E72;
+					};
+				};
+			};
+			buildConfigurationList = 37495725271A54C4002C3E72 /* Build configuration list for PBXProject "StickerCreator" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 37495721271A54C4002C3E72;
+			productRefGroup = 3749572B271A54C4002C3E72 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				37495729271A54C4002C3E72 /* StickerCreator */,
+				3749573E271A54C6002C3E72 /* StickerCreatorTests */,
+				37495748271A54C7002C3E72 /* StickerCreatorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37495728271A54C4002C3E72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37495735271A54C6002C3E72 /* Preview Assets.xcassets in Resources */,
+				37495732271A54C6002C3E72 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3749573D271A54C6002C3E72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37495747271A54C7002C3E72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		37495726271A54C4002C3E72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3749573A271A54C6002C3E72 /* StickerCreator.xcdatamodeld in Sources */,
+				37495737271A54C6002C3E72 /* Persistence.swift in Sources */,
+				37495730271A54C4002C3E72 /* ContentView.swift in Sources */,
+				3749572E271A54C4002C3E72 /* StickerCreatorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3749573B271A54C6002C3E72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37495744271A54C6002C3E72 /* StickerCreatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37495745271A54C7002C3E72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3749574E271A54C7002C3E72 /* StickerCreatorUITests.swift in Sources */,
+				37495750271A54C7002C3E72 /* StickerCreatorUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37495741271A54C6002C3E72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37495729271A54C4002C3E72 /* StickerCreator */;
+			targetProxy = 37495740271A54C6002C3E72 /* PBXContainerItemProxy */;
+		};
+		3749574B271A54C7002C3E72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37495729271A54C4002C3E72 /* StickerCreator */;
+			targetProxy = 3749574A271A54C7002C3E72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		37495751271A54C7002C3E72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		37495752271A54C7002C3E72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		37495754271A54C7002C3E72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StickerCreator/Preview Content\"";
+				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = it.fru.StickerCreator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		37495755271A54C7002C3E72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StickerCreator/Preview Content\"";
+				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = it.fru.StickerCreator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		37495757271A54C7002C3E72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = it.fru.StickerCreatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StickerCreator.app/StickerCreator";
+			};
+			name = Debug;
+		};
+		37495758271A54C7002C3E72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = it.fru.StickerCreatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StickerCreator.app/StickerCreator";
+			};
+			name = Release;
+		};
+		3749575A271A54C7002C3E72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = it.fru.StickerCreatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StickerCreator;
+			};
+			name = Debug;
+		};
+		3749575B271A54C7002C3E72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = it.fru.StickerCreatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StickerCreator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		37495725271A54C4002C3E72 /* Build configuration list for PBXProject "StickerCreator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37495751271A54C7002C3E72 /* Debug */,
+				37495752271A54C7002C3E72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37495753271A54C7002C3E72 /* Build configuration list for PBXNativeTarget "StickerCreator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37495754271A54C7002C3E72 /* Debug */,
+				37495755271A54C7002C3E72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37495756271A54C7002C3E72 /* Build configuration list for PBXNativeTarget "StickerCreatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37495757271A54C7002C3E72 /* Debug */,
+				37495758271A54C7002C3E72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37495759271A54C7002C3E72 /* Build configuration list for PBXNativeTarget "StickerCreatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3749575A271A54C7002C3E72 /* Debug */,
+				3749575B271A54C7002C3E72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		37495738271A54C6002C3E72 /* StickerCreator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				37495739271A54C6002C3E72 /* StickerCreator.xcdatamodel */,
+			);
+			currentVersion = 37495739271A54C6002C3E72 /* StickerCreator.xcdatamodel */;
+			path = StickerCreator.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 37495722271A54C4002C3E72 /* Project object */;
+}
