@@ -15,7 +15,11 @@ struct ContentView: View {
     
     var body: some View {
         if let uiImage = uiImage {
-            ImageCroppingView(uiImage: uiImage)
+            ImageCroppingView(uiImage: uiImage, onDismiss: {
+                withAnimation {
+                    self.uiImage = nil
+                }
+            })
         } else {
             NavigationView {
                 Button("Pick a photo") {
@@ -24,9 +28,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $presentImagePicker) {
                 UIImagePickerView(allowsEditing: false, sourceType: .savedPhotosAlbum, delegate: UIImagePickerView.Delegate(isPresented: $presentImagePicker, didCancel: { _ in }, didSelect: { result in
-//                    withAnimation {
+                    withAnimation {
                         self.uiImage = result.image
-//                    }
+                    }
                 }))
             }
         }

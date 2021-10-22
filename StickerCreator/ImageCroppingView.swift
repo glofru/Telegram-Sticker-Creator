@@ -10,6 +10,7 @@ import SwiftUI
 struct ImageCroppingView: View {
     
     let uiImage: UIImage
+    let onDismiss: () -> Void
     
     @StateObject private var viewModel = ImageCroppingViewModel()
     
@@ -27,6 +28,7 @@ struct ImageCroppingView: View {
                 Image(uiImage: viewModel.uiImage)
                     .onAppear {
                         viewModel.uiImage = uiImage
+                        viewModel.scale = viewModel.fitScale
                         viewModel.window.origin = CGPoint(x: viewModel.uiImage.size.width/2, y: viewModel.uiImage.size.height/2)
                         viewModel.window.size = CGSize(width: viewModel.uiImage.size.width/4, height: viewModel.uiImage.size.width/4)
                     }
@@ -73,7 +75,7 @@ struct ImageCroppingView: View {
                 lastScale = value
                 if delta > 0.94 {
                     viewModel.scale *= delta
-                    viewModel.scale = max(min(viewModel.scale, 3), viewModel.fitScale)
+                    viewModel.scale = max(min(viewModel.scale, 3), viewModel.fitScale - 0.1)
                 }
             }).onEnded({ _ in
                 lastScale = nil
@@ -87,6 +89,10 @@ struct ImageCroppingView: View {
                 lastOffset = nil
             })))
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Close", action: onDismiss)
+                }
+                
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button("Reset", action: viewModel.reset)
                         .disabled(processing)
@@ -194,14 +200,10 @@ class ImageCroppingViewModel: ObservableObject {
     
     var uiImage = UIImage(named: "testcat")!
     
-    @Published var scale: CGFloat
+    @Published var scale: CGFloat = 1.0
     @Published var offset = CGSize.zero
     
     @Published var window = CGRect(origin: .zero, size: .zero)
-    
-    init() {
-        self.scale = min(UIScreen.screenWidth / uiImage.size.width, UIScreen.screenHeight / uiImage.size.height)
-    }
     
     lazy var fitScale: CGFloat = {
         min(UIScreen.screenWidth / uiImage.size.width, UIScreen.screenHeight / uiImage.size.height)
@@ -243,7 +245,7 @@ struct Line: Shape {
 #if DEBUG
 struct ImageCroppingView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageCroppingView(uiImage: UIImage(named: "testcat")!)
+        ImageCroppingView(uiImage: UIImage(named: "testcat")!, onDismiss: {})
     }
 }
 #endif
