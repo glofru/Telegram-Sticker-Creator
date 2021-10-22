@@ -16,37 +16,37 @@ struct ImageCroppingView: View {
     let uiImage: UIImage!
     
     @State private var lastOffset: CGSize?
-    @State private var lastScale = 1.0
+    @State private var lastScale: CGFloat?
     
     var body: some View {
         NavigationView {
             ZStack {
                 Image(uiImage: viewModel.uiImage)
                     .onAppear {
-                        viewModel.window.center = CGPoint(x: viewModel.uiImage.size.width/2, y: viewModel.uiImage.size.height/2)
+                        viewModel.window.origin = CGPoint(x: viewModel.uiImage.size.width/2, y: viewModel.uiImage.size.height/2)
                         viewModel.window.size = CGSize(width: viewModel.uiImage.size.width/4, height: viewModel.uiImage.size.width/4)
                     }
                     .overlay {
                         GridView(viewModel: viewModel)
-                            .position(viewModel.window.center)
+                            .position(viewModel.window.origin)
                             .gesture(DragGesture()
                                         .onChanged({ value in
                                 if windowCenter == nil {
-                                    windowCenter = viewModel.window.center
+                                    windowCenter = viewModel.window.origin
                                 }
                                 
-                                viewModel.window.center = windowCenter!.applying(CGAffineTransform(translationX: value.translation.width, y: value.translation.height))
+                                viewModel.window.origin = windowCenter!.applying(CGAffineTransform(translationX: value.translation.width, y: value.translation.height))
                                 
-                                if viewModel.window.center.x - viewModel.window.size.width/2 < 0 {
-                                    viewModel.window.center.x = viewModel.window.size.width/2
-                                } else if viewModel.window.center.x + viewModel.window.size.width/2 > viewModel.uiImage.size.width {
-                                    viewModel.window.center.x = viewModel.uiImage.size.width - viewModel.window.size.width/2
+                                if viewModel.window.origin.x - viewModel.window.size.width/2 < 0 {
+                                    viewModel.window.origin.x = viewModel.window.size.width/2
+                                } else if viewModel.window.origin.x + viewModel.window.size.width/2 > viewModel.uiImage.size.width {
+                                    viewModel.window.origin.x = viewModel.uiImage.size.width - viewModel.window.size.width/2
                                 }
                                 
-                                if viewModel.window.center.y - viewModel.window.size.height/2 < 0 {
-                                    viewModel.window.center.y = viewModel.window.size.height/2
-                                } else if viewModel.window.center.y + viewModel.window.size.height/2 > viewModel.uiImage.size.height {
-                                    viewModel.window.center.y = viewModel.uiImage.size.height - viewModel.window.size.height/2
+                                if viewModel.window.origin.y - viewModel.window.size.height/2 < 0 {
+                                    viewModel.window.origin.y = viewModel.window.size.height/2
+                                } else if viewModel.window.origin.y + viewModel.window.size.height/2 > viewModel.uiImage.size.height {
+                                    viewModel.window.origin.y = viewModel.uiImage.size.height - viewModel.window.size.height/2
                                 }
                             }).onEnded({ _ in
                                 windowCenter = nil
@@ -57,14 +57,19 @@ struct ImageCroppingView: View {
             .scaleEffect(viewModel.scale)
             .gesture(MagnificationGesture()
                         .onChanged({ value in
-                let delta = value / lastScale
+                var delta: CGFloat
+                if lastScale == nil {
+                    delta = value
+                } else {
+                    delta = value / lastScale!
+                }
                 lastScale = value
                 if delta > 0.94 {
                     viewModel.scale *= delta
-                    viewModel.scale = max(min(viewModel.scale, 3), 0.8)
+                    viewModel.scale = max(min(viewModel.scale, 3), viewModel.fitScale)
                 }
             }).onEnded({ _ in
-                lastScale = 1.0
+                lastScale = nil
             }).simultaneously(with: DragGesture()
                                 .onChanged({ value in
                 if lastOffset == nil {
@@ -75,8 +80,10 @@ struct ImageCroppingView: View {
                 lastOffset = nil
             })))
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .bottomBar) {
                     Button("Reset", action: viewModel.reset)
+                    Spacer()
+                    Button("Process", action: viewModel.process)
                 }
             }
         }
@@ -121,19 +128,29 @@ private struct GridView: View {
     
     private func getPivot(_ position: PivotPosition) -> some View {
         Circle()
-            .strokeBorder(Color.white, lineWidth: 1)
+            .strokeBorder(Color.white, lineWidth: 2/viewModel.scale)
             .background(Circle().foregroundColor(Color.blue))
-            .frame(width: 10, height: 10)
+            .frame(width: 20/viewModel.scale, height: 20/viewModel.scale)
             .offset(CGSize(width: position.rawValue.width * viewModel.window.size.width/2, height: position.rawValue.height * viewModel.window.size.height/2))
             .highPriorityGesture(DragGesture().onChanged({ value in
                 if lastCenter == nil || lastSize == nil {
-                    lastCenter = viewModel.window.center
+                    lastCenter = viewModel.window.origin
                     lastSize = viewModel.window.size
                 }
                 
-//                viewModel.window.size = CGSize(width: abs(lastSize!.width + value.translation.width * position.rawValue.width * 2), height: abs(lastSize!.height + value.translation.height * position.rawValue.height * 2))
+                viewModel.window.size = CGSize(width: abs(lastSize!.width + value.translation.width * position.rawValue.width * 2), height: abs(lastSize!.height + value.translation.height * position.rawValue.height * 2))
                 
-                viewModel.window.size = CGSize(width: abs(lastSize!.width + value.translation.width * position.rawValue.width), height: abs(lastSize!.height + value.translation.height * position.rawValue.height))
+                if viewModel.window.origin.y - viewModel.window.size.height/2 < 0 {
+                    viewModel.window.size.height = viewModel.window.origin.y*2
+                } else if viewModel.window.origin.y + viewModel.window.size.height/2 > viewModel.uiImage.size.height {
+                    viewModel.window.size.height = (viewModel.uiImage.size.height - viewModel.window.origin.y)*2
+                }
+                
+                if viewModel.window.origin.x - viewModel.window.size.width/2 < 0 {
+                    viewModel.window.size.width = viewModel.window.origin.x*2
+                } else if viewModel.window.origin.x + viewModel.window.size.width/2 > viewModel.uiImage.size.width {
+                    viewModel.window.size.width = (viewModel.uiImage.size.width - viewModel.window.origin.x)*2
+                }
             }).onEnded({ _ in
                 lastCenter = nil
                 lastSize = nil
@@ -154,21 +171,50 @@ private struct GridView: View {
 }
 
 private class ImageCroppingViewModel: ObservableObject {
-    struct Window {
-        var center = CGPoint.zero;
-        var size = CGSize.zero;
-    }
     
-    let uiImage = UIImage(named: "testcat")!
+    let uiImage = UIImage(named: "cocconegro")!
     
-    @Published var scale = 1.0
+    @Published var scale: CGFloat
     @Published var offset = CGSize.zero
     
-    @Published var window = Window()
+    @Published var window = CGRect(origin: .zero, size: .zero)
+    
+    init() {
+        scale = min(UIScreen.screenWidth / uiImage.size.width, UIScreen.screenHeight / uiImage.size.height)
+    }
+    
+    lazy var fitScale: CGFloat = {
+        min(UIScreen.screenWidth / uiImage.size.width, UIScreen.screenHeight / uiImage.size.height)
+    }()
     
     func reset() {
-        self.scale = 1.0
+        self.scale = fitScale
         self.offset = CGSize.zero
+    }
+    
+    func process() {
+        let cgImage = uiImage.cgImage!
+        let cropped = cgImage.cropping(to: window.applying(CGAffineTransform(translationX: -window.width/2, y: -window.height/2)))!
+        let croppedUI = UIImage(cgImage: cropped)
+        share(items: [croppedUI])
+    }
+    
+    @discardableResult
+    func share(
+        items: [Any],
+        excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    ) -> Bool {
+        guard let source = UIApplication.shared.windows.last?.rootViewController else {
+            return false
+        }
+        let vc = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: nil
+        )
+        vc.excludedActivityTypes = excludedActivityTypes
+        vc.popoverPresentationController?.sourceView = source.view
+        source.present(vc, animated: true)
+        return true
     }
 }
 
