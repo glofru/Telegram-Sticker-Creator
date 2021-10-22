@@ -9,14 +9,17 @@ import SwiftUI
 
 struct ImageCroppingView: View {
     
+    let uiImage: UIImage!
+    
     @StateObject private var viewModel = ImageCroppingViewModel()
     
     @State private var windowCenter: CGPoint?
     
-    let uiImage: UIImage!
-    
     @State private var lastOffset: CGSize?
     @State private var lastScale: CGFloat?
+    
+    @State private var processing = false
+    @State private var showError = false
     
     var body: some View {
         NavigationView {
@@ -52,6 +55,9 @@ struct ImageCroppingView: View {
                                 windowCenter = nil
                             }))
                     }
+                    .alert("An error has occurred", isPresented: $showError) {
+                        
+                    }
             }
             .offset(viewModel.offset)
             .scaleEffect(viewModel.scale)
@@ -82,8 +88,21 @@ struct ImageCroppingView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button("Reset", action: viewModel.reset)
+                        .disabled(processing)
+                    
                     Spacer()
-                    Button("Process", action: viewModel.process)
+                    
+                    if processing {
+                        ProgressView()
+                    } else {
+                        Button("Process") {
+                            processing = true
+                            Task {
+                                showError = !(await viewModel.process())
+                                processing = false
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -192,11 +211,14 @@ private class ImageCroppingViewModel: ObservableObject {
         self.offset = CGSize.zero
     }
     
-    func process() {
-        let cgImage = uiImage.cgImage!
-        let cropped = cgImage.cropping(to: window.applying(CGAffineTransform(translationX: -window.width/2, y: -window.height/2)))!
-        let croppedUI = UIImage(cgImage: cropped)
-        share(items: [croppedUI])
+    func process() async -> Bool {
+        guard let result = ImageProcessor.process(uiImage: uiImage, window: window) else {
+            return false
+        }
+        
+        share(items: [result])
+        
+        return false
     }
     
     @discardableResult

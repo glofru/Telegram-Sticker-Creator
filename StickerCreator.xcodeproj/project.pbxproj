@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37332D7127237438008EA179 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37332D7027237438008EA179 /* ImageProcessor.swift */; };
 		3749572E271A54C4002C3E72 /* StickerCreatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */; };
 		37495730271A54C4002C3E72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749572F271A54C4002C3E72 /* ContentView.swift */; };
 		37495732271A54C6002C3E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37495731271A54C6002C3E72 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37332D7027237438008EA179 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		3749572A271A54C4002C3E72 /* StickerCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorApp.swift; sourceTree = "<group>"; };
 		3749572F271A54C4002C3E72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,11 +106,12 @@
 			children = (
 				3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */,
 				3749572F271A54C4002C3E72 /* ContentView.swift */,
+				3749575C271A5BB5002C3E72 /* ImageCroppingView.swift */,
+				37332D7027237438008EA179 /* ImageProcessor.swift */,
 				37495731271A54C6002C3E72 /* Assets.xcassets */,
 				37495736271A54C6002C3E72 /* Persistence.swift */,
 				37495738271A54C6002C3E72 /* StickerCreator.xcdatamodeld */,
 				37495733271A54C6002C3E72 /* Preview Content */,
-				3749575C271A5BB5002C3E72 /* ImageCroppingView.swift */,
 				3749575E271A5D36002C3E72 /* Extensions.swift */,
 			);
 			path = StickerCreator;
@@ -273,6 +276,7 @@
 				3749575F271A5D36002C3E72 /* Extensions.swift in Sources */,
 				37495737271A54C6002C3E72 /* Persistence.swift in Sources */,
 				37495730271A54C4002C3E72 /* ContentView.swift in Sources */,
+				37332D7127237438008EA179 /* ImageProcessor.swift in Sources */,
 				3749575D271A5BB5002C3E72 /* ImageCroppingView.swift in Sources */,
 				3749572E271A54C4002C3E72 /* StickerCreatorApp.swift in Sources */,
 			);
