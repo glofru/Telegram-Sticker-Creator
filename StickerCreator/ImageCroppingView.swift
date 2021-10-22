@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImageCroppingView: View {
     
-    let uiImage: UIImage!
+    let uiImage: UIImage
     
     @StateObject private var viewModel = ImageCroppingViewModel()
     
@@ -26,6 +26,7 @@ struct ImageCroppingView: View {
             ZStack {
                 Image(uiImage: viewModel.uiImage)
                     .onAppear {
+                        viewModel.uiImage = uiImage
                         viewModel.window.origin = CGPoint(x: viewModel.uiImage.size.width/2, y: viewModel.uiImage.size.height/2)
                         viewModel.window.size = CGSize(width: viewModel.uiImage.size.width/4, height: viewModel.uiImage.size.width/4)
                     }
@@ -189,9 +190,9 @@ private struct GridView: View {
     }
 }
 
-private class ImageCroppingViewModel: ObservableObject {
+class ImageCroppingViewModel: ObservableObject {
     
-    let uiImage = UIImage(named: "cocconegro")!
+    var uiImage = UIImage(named: "testcat")!
     
     @Published var scale: CGFloat
     @Published var offset = CGSize.zero
@@ -199,7 +200,7 @@ private class ImageCroppingViewModel: ObservableObject {
     @Published var window = CGRect(origin: .zero, size: .zero)
     
     init() {
-        scale = min(UIScreen.screenWidth / uiImage.size.width, UIScreen.screenHeight / uiImage.size.height)
+        self.scale = min(UIScreen.screenWidth / uiImage.size.width, UIScreen.screenHeight / uiImage.size.height)
     }
     
     lazy var fitScale: CGFloat = {
@@ -212,31 +213,21 @@ private class ImageCroppingViewModel: ObservableObject {
     }
     
     func process() async -> Bool {
+        await Task.sleep(500_000_000)
         guard let result = ImageProcessor.process(uiImage: uiImage, window: window) else {
             return false
         }
         
-        share(items: [result])
+        DispatchQueue.main.async {
+            self.share(items: [result])
+        }
         
-        return false
+        return true
     }
     
-    @discardableResult
-    func share(
-        items: [Any],
-        excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    ) -> Bool {
-        guard let source = UIApplication.shared.windows.last?.rootViewController else {
-            return false
-        }
-        let vc = UIActivityViewController(
-            activityItems: items,
-            applicationActivities: nil
-        )
-        vc.excludedActivityTypes = excludedActivityTypes
-        vc.popoverPresentationController?.sourceView = source.view
-        source.present(vc, animated: true)
-        return true
+    func share(items: [Any]) {
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
 }
 

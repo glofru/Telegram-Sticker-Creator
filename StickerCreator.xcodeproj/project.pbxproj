@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37332D7127237438008EA179 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37332D7027237438008EA179 /* ImageProcessor.swift */; };
+		37332D74272378BE008EA179 /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 37332D73272378BE008EA179 /* ImagePickerView */; };
 		3749572E271A54C4002C3E72 /* StickerCreatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */; };
 		37495730271A54C4002C3E72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749572F271A54C4002C3E72 /* ContentView.swift */; };
 		37495732271A54C6002C3E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37495731271A54C6002C3E72 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		37332D7027237438008EA179 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		37332D7527238598008EA179 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3749572A271A54C4002C3E72 /* StickerCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCreatorApp.swift; sourceTree = "<group>"; };
 		3749572F271A54C4002C3E72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37332D74272378BE008EA179 /* ImagePickerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +107,7 @@
 		3749572C271A54C4002C3E72 /* StickerCreator */ = {
 			isa = PBXGroup;
 			children = (
+				37332D7527238598008EA179 /* Info.plist */,
 				3749572D271A54C4002C3E72 /* StickerCreatorApp.swift */,
 				3749572F271A54C4002C3E72 /* ContentView.swift */,
 				3749575C271A5BB5002C3E72 /* ImageCroppingView.swift */,
@@ -158,6 +162,9 @@
 			dependencies = (
 			);
 			name = StickerCreator;
+			packageProductDependencies = (
+				37332D73272378BE008EA179 /* ImagePickerView */,
+			);
 			productName = StickerCreator;
 			productReference = 3749572A271A54C4002C3E72 /* StickerCreator.app */;
 			productType = "com.apple.product-type.application";
@@ -230,6 +237,9 @@
 				Base,
 			);
 			mainGroup = 37495721271A54C4002C3E72;
+			packageReferences = (
+				37332D72272378BE008EA179 /* XCRemoteSwiftPackageReference "ImagePickerView" */,
+			);
 			productRefGroup = 3749572B271A54C4002C3E72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -442,6 +452,8 @@
 				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StickerCreator/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Adding photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -472,6 +484,8 @@
 				DEVELOPMENT_TEAM = 4MJXMYZ3D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StickerCreator/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Adding photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -627,6 +641,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37332D72272378BE008EA179 /* XCRemoteSwiftPackageReference "ImagePickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rebeloper/ImagePickerView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37332D73272378BE008EA179 /* ImagePickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37332D72272378BE008EA179 /* XCRemoteSwiftPackageReference "ImagePickerView" */;
+			productName = ImagePickerView;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		37495738271A54C6002C3E72 /* StickerCreator.xcdatamodeld */ = {

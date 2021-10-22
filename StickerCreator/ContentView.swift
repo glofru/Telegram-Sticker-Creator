@@ -6,11 +6,30 @@
 //
 
 import SwiftUI
-import CoreData
+import ImagePickerView
 
 struct ContentView: View {
+    
+    @State private var uiImage: UIImage?
+    @State private var presentImagePicker = false
+    
     var body: some View {
-        ImageCroppingView(uiImage: UIImage(named: "testcat")!)
+        if let uiImage = uiImage {
+            ImageCroppingView(uiImage: uiImage)
+        } else {
+            NavigationView {
+                Button("Pick a photo") {
+                    presentImagePicker = true
+                }
+            }
+            .sheet(isPresented: $presentImagePicker) {
+                UIImagePickerView(allowsEditing: false, sourceType: .savedPhotosAlbum, delegate: UIImagePickerView.Delegate(isPresented: $presentImagePicker, didCancel: { _ in }, didSelect: { result in
+//                    withAnimation {
+                        self.uiImage = result.image
+//                    }
+                }))
+            }
+        }
     }
 }
 

@@ -10,12 +10,18 @@ import SwiftUI
 
 class ImageProcessor {
     
-    static func process(uiImage: UIImage, window: CGRect) -> Data? {
+    static func process(uiImage: UIImage, window: CGRect) -> URL? {
         let side = 512.0
         let maxWeight = 500_000
         
-        let cgImage = uiImage.cgImage!
-        let cropped = cgImage.cropping(to: window.applying(CGAffineTransform(translationX: -window.width/2, y: -window.height/2)))!
+        guard let cgImage = uiImage.cgImage else {
+            print("Failed converting to CGImage")
+            return nil
+        }
+        guard let cropped = cgImage.cropping(to: window.applying(CGAffineTransform(translationX: -window.width/2, y: -window.height/2))) else {
+            print("Failed cropping")
+            return nil
+        }
         let croppedUI = UIImage(cgImage: cropped)
         
         let maxSide = max(cropped.width, cropped.height)
@@ -25,6 +31,7 @@ class ImageProcessor {
         UIGraphicsBeginImageContextWithOptions(newSize, true, 1)
         croppedUI.draw(in: CGRect(origin: .zero, size: newSize))
         guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            print("Failed resizing")
             return nil
         }
         UIGraphicsEndImageContext()
@@ -41,9 +48,20 @@ class ImageProcessor {
         }
         
         guard compressed != nil, let result = UIImage(data: compressed!)?.pngData() else {
+            print("Failed converting to PNG")
             return nil
         }
         
-        return result
+        let temporaryFolder = FileManager.default.temporaryDirectory
+        let fileName = "sticker.png"
+        let temporaryFileURL = temporaryFolder.appendingPathComponent(fileName)
+        
+        do {
+            try result.write(to: temporaryFileURL)
+        } catch {
+            return nil
+        }
+        
+        return temporaryFileURL
     }
 }
