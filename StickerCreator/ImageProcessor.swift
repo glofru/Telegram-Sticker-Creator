@@ -38,26 +38,24 @@ class ImageProcessor {
         
         var compressed: Data?
         for i in stride(from: CGFloat(1.0), to: 0, by: -0.1) {
-            print(i)
-            if let jpg = image.jpegData(compressionQuality: i) {
-                if Int64(jpg.count) < maxWeight {
-                    compressed = jpg
-                    break
-                }
+            if let jpg = image.jpegData(compressionQuality: i), Int64(jpg.count) < maxWeight {
+                compressed = jpg
+                break
             }
         }
         
-        guard compressed != nil, let result = UIImage(data: compressed!)?.pngData() else {
+        compressed = UIImage(data: compressed!)?.pngData()
+        
+        guard compressed != nil else {
             print("Failed converting to PNG")
             return nil
         }
         
-        let temporaryFolder = FileManager.default.temporaryDirectory
         let fileName = "sticker.png"
-        let temporaryFileURL = temporaryFolder.appendingPathComponent(fileName)
+        let temporaryFileURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
         
         do {
-            try result.write(to: temporaryFileURL)
+            try compressed!.write(to: temporaryFileURL)
         } catch {
             return nil
         }
